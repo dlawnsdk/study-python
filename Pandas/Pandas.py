@@ -95,4 +95,27 @@ series = pd.DataFrame({'fruits': ['orange'], 'time': ['20'], 'year': [2023]})
 df = pd.concat([df, series], ignore_index=True)
 #print(df)
 
+# 열 추가
+data = {
+    "fruits": ["apple", "orange", "banana", "strawberry", "kiwifruit"],
+    "year": [2001, 2002, 2008, 2006, 2002],
+    "time": [1, 5, 2, 3, 8]
+}
+df = pd.DataFrame(data)
+df["price"] = [150, 200, 130, 170, 220]
+#print(df)
+
+# 데이터 참조
+data = {
+    "fruits": ["apple", "orange", "banana", "strawberry", "kiwifruit"],
+    "year": [2001, 2004, 2002, 2030, 2008],
+    "time": [1, 6, 4, 2, 8]
+}
+df = pd.DataFrame(data)
+df_loc = df.loc[[1, 2], ["time", "year"]] #이름으로 참조
+df_iloc = df.iloc[[1, 2], [0, 2]] #번호로 참조
+
+# 행 또는 열 삭제
+
+
 

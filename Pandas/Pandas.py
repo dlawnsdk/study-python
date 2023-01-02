@@ -89,11 +89,10 @@ df.index = [3, 4]
 
 # 행 추가
 data = {"fruits": ["apple", "orange", "banana", "strawberry", "kiwifruit"],
-        "time" : [1, 5, 6, 8, 9]}
+        "time": [1, 5, 6, 8, 9]}
 df = pd.DataFrame(data)
-series = pd.Series(["mango", 20])
-print(series)
-df = pd.concat([df, series])
-print(df)
+series = pd.DataFrame({'fruits': ['orange'], 'time': ['20'], 'year': [2023]})
+df = pd.concat([df, series], ignore_index=True)
+#print(df)
 
 

@@ -116,6 +116,34 @@ df_loc = df.loc[[1, 2], ["time", "year"]] #이름으로 참조
 df_iloc = df.iloc[[1, 2], [0, 2]] #번호로 참조
 
 # 행 또는 열 삭제
+data = {
+    "fruits": ["apple", "orange", "banana", "strawberry", "kiwifruit"],
+    "time": [1, 4, 5, 6, 3],
+    "year": [2001, 2002, 2005, 2010, 2008]
+}
+df = pd.DataFrame(data)
+df_1 = df.drop(range(0, 2)) # 0~1번 삭제
+df_2 = df.drop("year", axis=1) # year 열 삭제
 
+# 정렬
+data = {
+    "fruits": ["apple", "orange", "banana", "strawberry", "kiwifruit"],
+    "time": [1, 1, 5, 2, 7],
+    "year": [2005, 2002, 2008, 2005, 2006]
+}
+df = pd.DataFrame(data)
+
+df = df.sort_values(by="year", ascending=True) # year 컬럼 기준 오름차순
+df = df.sort_values(by=["time", "year"], ascending=True) # time으로 정렬 하는데 같은 경우 year로 정렬
+
+# 필터링
+data = {
+    "fruits": ["apple", "orange", "banana", "strawberry", "kiwifruit"],
+    "year": [2001, 2003, 2004, 2005, 2010],
+    "time": [1, 4, 2, 6, 4]
+}
+df = pd.DataFrame(data)
+#print(df.index % 2 == 0) # 인덱스가 짝수인 경우 True 홀수인 경우 False 출력
+print(df[df.index % 2 == 0]) # 짝수 인덱스에 해당하는 데이터 출력
 
 

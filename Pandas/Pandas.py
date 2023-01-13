@@ -144,6 +144,6 @@ data = {
 }
 df = pd.DataFrame(data)
 #print(df.index % 2 == 0) # 인덱스가 짝수인 경우 True 홀수인 경우 False 출력
-print(df[df.index % 2 == 0]) # 짝수 인덱스에 해당하는 데이터 출력
+#print(df[df.index % 2 == 0]) # 짝수 인덱스에 해당하는 데이터 출력
 
 

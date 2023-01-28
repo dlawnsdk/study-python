@@ -1,7 +1,11 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
-
+from matplotlib import cm
+import math
+import time
 from matplotlib import font_manager, rc
+from mpl_toolkits.mplot3d import Axes3D
 font_path = "C:/Windows/Fonts/NGULIM.TTF"
 font = font_manager.FontProperties(fname=font_path).get_name()
 rc('font', family=font)
@@ -180,7 +184,132 @@ print(x)
 # plt.show()
 
 """누적 히스토그램 만들기"""
-np.random.seed(0)
-data = np.random.randn(10000)
-plt.hist(data, bins=100, cumulative=True)
+# np.random.seed(0)
+# data = np.random.randn(10000)
+# plt.hist(data, bins=100, cumulative=True)
+# plt.show()
+
+"""산포도"""
+# np.random.seed(10)
+# x = np.random.choice(np.arange(100), 100)
+# y = np.random.choice(np.arange(100), 100)
+# z = np.random.choice(np.arange(100), 100)
+
+# z값을 기준으로 해당 데이터보다 값의 크기를 상대적으로 계산
+# plt.scatter(x, y, marker="o", c=z, cmap="Greens")
+# plt.colorbar()
+# plt.show()
+
+"""원그래프"""
+# data = [60, 20, 10, 5, 3, 2]
+# labels = ["Apple", "Orange", "Banana", "Pineapple", "Kiwifruit", "Strawberry"]
+# explode = [0, .1, 0, 0, 0, 0]
+# plt.pie(data, labels=labels, explode=explode)
+# plt.axis("equal")
+# plt.show()
+
+"""3D 그래프"""
+# t = np.linspace(-2*np.pi, 2*np.pi)
+# X, Y = np.meshgrid(t, t)
+# R = np.sqrt(X**2 + Y**2)
+# Z = np.sin(R)
+# fig = plt.figure(figsize=(6, 6))
+#
+# ax = fig.add_subplot(1, 1, 1, projection="3d")
+# ax.plot_surface(X, Y, Z)
+# plt.show()
+
+"""곡면 만들기"""
+# x = y = np.linspace(-5, 5)
+# X, Y = np.meshgrid(x, y)
+# Z = np.exp(-(X**2 + Y**2)/2) / (2*np.pi)
+# fig = plt.figure(figsize=(6, 6))
+# ax = fig.add_subplot(1, 1, 1, projection="3d")
+# ax.plot_surface(X, Y, Z)
+# plt.show()
+
+"""3D 히스토그램 만들기"""
+# fig = plt.figure(figsize=(5, 5))
+# ax = fig.add_subplot(111, projection="3d")
+# 
+# xpos = [i for i in range(10)]
+# ypos = [i for i in range(10)]
+# zpos = np.zeros(10)
+# 
+# dx = np.ones(10)
+# dy = np.ones(10)
+# dz = [i for i in range(10)]
+# ax.bar3d(xpos, ypos, zpos, dx, dy, dz)
+# plt.show()
+
+"""3D 산포도 만들기"""
+# np.random.seed(0)
+# X = np.random.randn(1000)
+# Y = np.random.randn(1000)
+# Z = np.random.randn(1000)
+#
+# fig = plt.figure(figsize=(6, 6))
+# ax = fig.add_subplot(1, 1, 1, projection="3d")
+#
+# x = np.ravel(X)
+# y = np.ravel(Y)
+# z = np.ravel(Z)
+# ax.scatter3D(X, Y, Z)
+# plt.show()
+
+"""3D 그래프에 컬러맵 적용하기"""
+# t = np.linspace(-2*np.pi, 2*np.pi)
+# X, Y = np.meshgrid(t, t)
+#
+# R = np.sqrt(X**2 + Y**2)
+# Z = np.sin(R)
+#
+# fig = plt.figure(figsize=(6, 6))
+# ax = fig.add_subplot(1, 1, 1, projection="3d")
+# ax.plot_surface(X, Y, Z, cmap=cm.coolwarm)
+# plt.show()
+
+"""연습문제"""
+# df_iris = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data", header=None)
+# df_iris.columns = ["Sepal length", "sepal width", "petal length", "petal width", "class"]
+# fig = plt.figure(figsize=(10,10))
+#
+# plt.scatter(df_iris.iloc[:50, 0], df_iris.iloc[:50, 1], label="setosa", color="k")
+# plt.scatter(df_iris.iloc[50:100, 0], df_iris.iloc[50:100, 1], label="versicolor", color="b")
+# plt.scatter(df_iris.iloc[100:150, 0], df_iris.iloc[100:150, 1], label="virginica", color="g")
+# plt.xlabel("sepal length")
+# plt.ylabel("sepal width")
+# plt.legend(loc="best")
+# plt.grid(True)
+# plt.show()
+
+"""종합문제"""
+np.random.seed(100)
+X = 0
+N = 1000
+circle_x = np.arange(0, 1, 0.001)
+circle_y = np.sqrt(1 - circle_x * circle_x)
+
+plt.figure(figsize=(5, 5))
+plt.plot(circle_x, circle_y)
+start_time = time.process_time()
+for i in range(0, N):
+    score_x = np.random.rand()
+    score_y = np.random.rand()
+
+    if score_x * score_x + score_y * score_y < 1:
+        plt.scatter(score_x, score_y, marker='o', color="k")
+        X = X + 1
+    else:
+        plt.scatter(score_x, score_y, marker='o', color="b")
+pi = 4 * float(X)/float(N)
+
+end_time = time.process_time()
+time = end_time - start_time
+print("원주율: %.6f" % pi)
+print("실행시간: %f" % (time))
+
+plt.grid(True)
+plt.xlabel('X')
+plt.ylabel('Y')
 plt.show()

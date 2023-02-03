@@ -1,5 +1,5 @@
 import re
-
+from collections import defaultdict
 """람다 기초"""
 # a = 4
 # def test(a):
@@ -81,3 +81,44 @@ import re
 # sort_by_time = sorted(nest_list, key=lambda x: x[3])
 # print(sort_by_time)
 
+"""리스트 내포"""
+# a = [1, -2, 3, -4, 5]
+# print([abs(x) for x in a])
+# b = [1, -2, 3, -4, 5]
+# print(list(map(abs, b)))
+# minute_data = [30, 155, 180, 74, 11, 60, 82]
+# h_m_split = lambda x: [x // 60, x % 60]
+# h_m_data = [h_m_split(x) for x in minute_data]
+# print(h_m_data)
+# minute_data: list = [30, 155, 180, 74, 11, 60, 82]
+# print([a for a in minute_data if a % 60 == 0])
+
+"""여러 배열 동시에 루프시키기"""
+# a = [1, -2, 3, -4, 5]
+# b = [5, 2, -6, 3, -8]
+# for x, y in zip(a, b):
+#     print(x, y)
+# print([x**2 + y**2 for x, y in zip(a, b)])
+
+# hour = [0, 2, 3, 1, 0, 1, 1]
+# minute = [30, 35, 0, 14, 11, 0, 22]
+# h_m_combine = lambda x, y: x*60 + y
+# minute_data1 = [h_m_combine(x, y) for x, y in zip(hour, minute)]
+# print(minute_data1)
+
+"""딕셔너리"""
+# d = {}
+# list = ["poo", "boo", "pop", "poo"]
+# for key in list:
+#     print(key)
+#     if key in d:
+#         d[key] += 1
+#     else:
+#         d[key] = 1
+# print(d)
+
+d = defaultdict(int)
+lst = ["foo", "poo", "pop", "foo", "bob", "pop"]
+for key in lst:
+    d[key] += 1
+print(d)

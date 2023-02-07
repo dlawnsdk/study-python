@@ -1,4 +1,4 @@
 # study-python
-## numpy
-## pandas
-## matplotlib
++ ## numpy
++ ## pandas
++ ## matplotlib

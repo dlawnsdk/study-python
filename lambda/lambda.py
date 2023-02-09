@@ -117,8 +117,19 @@ from collections import defaultdict
 #         d[key] = 1
 # print(d)
 
-d = defaultdict(int)
-lst = ["foo", "poo", "pop", "foo", "bob", "pop"]
-for key in lst:
-    d[key] += 1
-print(d)
+# d = defaultdict(int)
+# lst = ["foo", "poo", "pop", "foo", "bob", "pop"]
+# for key in lst:
+#     d[key] += 1
+# print(d)
+
+description = "Artificial intelligence (AI, also machine intelligence, MI) is " \
+    "intelligence exhibited by machines, rather than " \
+    "humans or other animals (natural intelligence, NI)."
+
+char_freq = defaultdict(int)
+
+for i in description:
+    # print(i)
+    char_freq[i] += 1
+print(sorted(char_freq.items(), key=lambda x: x[1], reverse=True)[:5])

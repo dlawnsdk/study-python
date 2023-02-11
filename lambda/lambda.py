@@ -1,5 +1,6 @@
 import re
 from collections import defaultdict
+from collections import Counter
 """람다 기초"""
 # a = 4
 # def test(a):
@@ -123,13 +124,105 @@ from collections import defaultdict
 #     d[key] += 1
 # print(d)
 
-description = "Artificial intelligence (AI, also machine intelligence, MI) is " \
-    "intelligence exhibited by machines, rather than " \
-    "humans or other animals (natural intelligence, NI)."
+# description = "Artificial intelligence (AI, also machine intelligence, MI) is " \
+#     "intelligence exhibited by machines, rather than " \
+#     "humans or other animals (natural intelligence, NI)."
+#
+# char_freq = defaultdict(int)
+#
+# for i in description:
+#     # print(i)
+#     char_freq[i] += 1
+# print(sorted(char_freq.items(), key=lambda x: x[1], reverse=True)[:5])
 
-char_freq = defaultdict(int)
+# d = {}
+# price = [
+#     ("apple", 50),
+#     ("banana", 120),
+#     ("grape", 500),
+#     ("apple", 70),
+#     ("lemon", 150),
+#     ("grape", 1000)
+# ]
+#
+# for key, value in price:
+#     if key in d:
+#         d[key].append(value)
+#     else:
+#         d[key] = [value]
+#     print(d)
 
-for i in description:
-    # print(i)
-    char_freq[i] += 1
-print(sorted(char_freq.items(), key=lambda x: x[1], reverse=True)[:5])
+# d = defaultdict(list)
+# price = [
+#     ("apple", 50),
+#     ("banana", 120),
+#     ("grape", 500),
+#     ("apple", 70),
+#     ("lemon", 150),
+#     ("grape", 1000)
+# ]
+#
+# for key, value in price:
+#     d[key].append(value)
+# print([sum(x) / len(x) for x in d.values()]) # 리스트 내포
+
+"""Counter"""
+# lst = ["foo", "bar", "pop", "pop", "foo", "popo"]
+# d = Counter(lst)
+# print(d.keys())
+
+# d = Counter("A counter is a dict subClass for counting hashable objects")
+#
+# print(d.most_common(5))
+
+# description = "" \
+#               "Artifical intelligence (AI, also machine intelligencem MI is" \
+#               "intelligence exhibited by machines, rather than" \
+#               "humans or other animals (nature intelligence, NI)"
+#
+# d = Counter(description)
+# print(d.most_common(10))
+
+"""연습문제"""
+# a = 8
+# basic = lambda x: x * 5  if x < 8 else a // 2
+# print("계산 결과")
+# print(basic(a))
+import re
+from collections import defaultdict
+from collections import Counter
+# time_list = [
+#     "2018/1/23_19:40",
+#     "2016/5/7_5:25",
+#     "2018/8/21_10:50",
+#     "2017/8/9_7:5",
+#     "2015/4/1_22:15"
+# ]
+#
+# get_month = lambda x: int(re.split("[/_:]", x)[0])
+# month_list = list(map(get_month, time_list))
+# length = [3, 1, 6, 2, 8, 2, 9]
+# side = [4, 1, 15, 18, 7, 2, 19]
+# height = [10, 15, 17, 13, 11, 19, 18]
+# volume = [x * y * z for x, y, z in zip(length, side, height)]
+
+price = [
+    ("strawberry", 520),
+    ("pear", 200),
+    ("peach", 400),
+    ("apple", 170),
+    ("lemon", 150),
+    ("grape", 1000),
+    ("strawberry", 750),
+    ("pear", 400),
+    ("strawberry", 500),
+    ("lemon", 300),
+    ("strawberry", 700)
+]
+
+d = defaultdict(list)
+price_key_count = []
+for key, value in price:
+    d[key].append(value)
+    price_key_count.append(key)
+print([sum(x) / len(x) for x in d.values()])

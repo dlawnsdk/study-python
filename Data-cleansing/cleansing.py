@@ -97,6 +97,25 @@ import csv
 # print(dupli_data.drop_duplicates())
 
 """매핑"""
+
+#
+# attri_data_frame1 = DataFrame(attri_data1)
+# city_map = {
+#     "서울":"서울",
+#     "광주": "전라도",
+#     "부산": "경상도",
+#     "대전": "충청도"
+# }
+# attri_data_frame1["region"] = attri_data_frame1["city"].map(city_map)
+# MS_map = {
+#     "서울": "중부",
+#     "대전": "중부",
+#     "광주": "남부",
+#     "부산": "남부"
+# }
+# attri_data_frame1["MS"] = attri_data_frame1["city"].map(MS_map)
+# print(attri_data_frame1.to_html('chiron.html'))
+
 attri_data1 = {
     "ID": ["100", "101", "102", "103", "104", "106", "108", "110", "111", "113"],
     "city": ["서울", "부산", "대전", "광주", "서울", "서울", "부산", "대전", "광주", "서울"],
@@ -105,18 +124,6 @@ attri_data1 = {
 }
 
 attri_data_frame1 = DataFrame(attri_data1)
-city_map = {
-    "서울":"서울",
-    "광주": "전라도",
-    "부산": "경상도",
-    "대전": "충청도"
-}
-attri_data_frame1["region"] = attri_data_frame1["city"].map(city_map)
-MS_map = {
-    "서울": "중부",
-    "대전": "중부",
-    "광주": "남부",
-    "부산": "남부"
-}
-attri_data_frame1["MS"] = attri_data_frame1["city"].map(MS_map)
-print(attri_data_frame1)
+birth_year_bins = [1980, 1985, 1990, 1995, 2000]
+birth_year_cut_data = pd.cut(attri_data_frame1.birth_year, birth_year_bins)
+print(birth_year_cut_data)

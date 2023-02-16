@@ -116,14 +116,28 @@ import csv
 # attri_data_frame1["MS"] = attri_data_frame1["city"].map(MS_map)
 # print(attri_data_frame1.to_html('chiron.html'))
 
-attri_data1 = {
-    "ID": ["100", "101", "102", "103", "104", "106", "108", "110", "111", "113"],
-    "city": ["서울", "부산", "대전", "광주", "서울", "서울", "부산", "대전", "광주", "서울"],
-    "birth_year": [1990, 1989, 1992, 1997, 1982, 1991, 1988, 1990, 1995, 1981],
-    "name": ["영이", "순돌", "짱구", "태양", "션", "유리", "현아", "태식", "민수", "호식"]
-}
+# attri_data1 = {
+#     "ID": ["100", "101", "102", "103", "104", "106", "108", "110", "111", "113"],
+#     "city": ["서울", "부산", "대전", "광주", "서울", "서울", "부산", "대전", "광주", "서울"],
+#     "birth_year": [1990, 1989, 1992, 1997, 1982, 1991, 1988, 1990, 1995, 1981],
+#     "name": ["영이", "순돌", "짱구", "태양", "션", "유리", "현아", "태식", "민수", "호식"]
+# }
+# 
+# attri_data_frame1 = DataFrame(attri_data1)
+# birth_year_bins = [1980, 1985, 1990, 1995, 2000]
+# label = ["1번", "2번"]
+# birth_year_cut_data = pd.cut(attri_data_frame1.birth_year, 2, labels=label)
+# print(birth_year_cut_data)
 
-attri_data_frame1 = DataFrame(attri_data1)
-birth_year_bins = [1980, 1985, 1990, 1995, 2000]
-birth_year_cut_data = pd.cut(attri_data_frame1.birth_year, birth_year_bins)
-print(birth_year_cut_data)
+"""연습문제"""
+df = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data", header=None)
+df.colums = [
+    "", "Alcohol", "Mail acid", "Ash", "Alcalinity of ash", "Magnesium", "Total phenols", "Flavanoids", "NonFlavanoid phenols", "Proanthocyanins",
+    "Color intensity", "Hue", "OD280/0D315 of diluted wines", "Proline"
+         ]
+df_ten = df.head(10)
+df_ten.iloc[1, 0] = NA
+df_ten.iloc[2, 3] = NA
+df_ten.iloc[4, 8] = NA
+df_ten.iloc[7, 3] = NA
+print(df_ten)

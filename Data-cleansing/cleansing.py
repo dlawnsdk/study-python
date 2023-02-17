@@ -131,13 +131,16 @@ import csv
 
 """연습문제"""
 df = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data", header=None)
-df.colums = [
-    "", "Alcohol", "Mail acid", "Ash", "Alcalinity of ash", "Magnesium", "Total phenols", "Flavanoids", "NonFlavanoid phenols", "Proanthocyanins",
-    "Color intensity", "Hue", "OD280/0D315 of diluted wines", "Proline"
-         ]
+df.columns = [ "", "Alcohol", "Mail acid", "Ash", "Alcalinity of ash", "Magnesium", "Total phenols", "Flavanoids", "NonFlavanoid phenols", "Proanthocyanins", "Color intensity", "Hue", "OD280/0D315 of diluted wines", "Proline"
+            ]
 df_ten = df.head(10)
 df_ten.iloc[1, 0] = NA
 df_ten.iloc[2, 3] = NA
 df_ten.iloc[4, 8] = NA
 df_ten.iloc[7, 3] = NA
+
+df_ten_mean = df_ten.fillna(df_ten.mean())
+df_ten_column_mean = df_ten["Alcohol"].mean()
+
+df_ten = pd.concat([df_ten.iloc[3]])
 print(df_ten)

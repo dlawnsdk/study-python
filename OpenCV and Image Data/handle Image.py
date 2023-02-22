@@ -32,6 +32,19 @@ img = cv2.imread("D:/python/python-study/img/pythonImage.png", cv2.IMREAD_COLOR)
 
 """색조 변환 및 색상 반전"""
 # my_img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY) # RGB2LAB, RGB2GRAY
-my_img = cv2.bitwise_not(img) # 네거티브 반전
-cv2.imshow("sample", my_img)
-cv2.waitKey(0)
+# my_img = cv2.bitwise_not(img) # 네거티브 반전
+# cv2.imshow("sample", my_img)
+# cv2.waitKey(0)
+
+"""임계값 처리"""
+# retaval, my_img = cv2.threshold(img, 75, 255, cv2.THRESH_BINARY) # targetIMG, 임계값, 최대값, 인수
+# cv2.imshow("sample", my_img)
+# cv2.waitKey(0)
+
+"""마스킹"""
+# mask = cv2.imread("D:/python/python-study/img/masking.png", 0) # 채널수(색상에 대한 정보를 담아두는 곳)가 1인 이미지로 변환
+# mask = cv2.resize(mask, (img.shape[1], img.shape[0]))
+# my_img = cv2.bitwise_and(img, img, mask=mask)
+# cv2.imshow("sample", my_img)
+# cv2.waitKey(0)
+

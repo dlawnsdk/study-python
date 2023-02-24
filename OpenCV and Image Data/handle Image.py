@@ -48,3 +48,26 @@ img = cv2.imread("D:/python/python-study/img/pythonImage.png", cv2.IMREAD_COLOR)
 # cv2.imshow("sample", my_img)
 # cv2.waitKey(0)
 
+"""흐림"""
+# my_img = cv2.GaussianBlur(img, (5, 5,), 0)
+# cv2.imshow("sample", my_img)
+# cv2.waitKey(0)
+
+"""노이즈 제거"""
+# my_img = cv2.fastNlMeansDenoisingColored(img)
+# cv2.imshow("sample", my_img)
+# cv2.waitKey(0)
+
+"""팽창"""
+# filt = np.array([[0, 1, 0], [1, 0, 1], [0, 1, 0]], np.uint8)
+# my_img = cv2.dilate(img, filt)
+# cv2.imshow("sample", my_img)
+# cv2.waitKey(0)
+
+"""침식"""
+# filt = np.array([[0, 1, 0], [1, 0, 1], [0, 1, 0]], np.uint8)
+# my_img = cv2.erode(img, filt)
+# cv2.imshow("sample", my_img)
+# cv2.waitKey(0)
+
+"""데이터 부풀리기"""

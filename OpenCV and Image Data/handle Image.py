@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 import time
+import os
 
 img = cv2.imread("D:/python/python-study/img/pythonImage.png", cv2.IMREAD_COLOR)
 
@@ -70,4 +71,36 @@ img = cv2.imread("D:/python/python-study/img/pythonImage.png", cv2.IMREAD_COLOR)
 # cv2.imshow("sample", my_img)
 # cv2.waitKey(0)
 
+
 """데이터 부풀리기"""
+def scratch_image(img, flip=True, thr=True, filt=True, resize=True, erode=True):
+    methods = [flip, thr, filt, resize, erode]
+    img_size = img.shape # 이미지 사이즈
+    filter1 = np.ones((3, 3))
+
+    images = [img]
+
+    scratch = np.array([
+        lambda x: cv2.flip(x, 1),  # 회전
+        lambda x: cv2.threshold(x, 100, 255, cv2.THRESH_TOZERO)[1],  # 임계값 처리
+        lambda x: cv2.GaussianBlur(x, (5, 5), 0),  # 흐림
+        lambda x: cv2.resize(cv2.resize(
+            x, (img_size[1] // 5, img_size[0] // 5)), (img_size[1], img_size[0])),  # 리사이즈
+        lambda x: cv2.erode(x, filter1)  # 침식
+
+    ])
+
+    doubling_images = lambda f, img: np.r_[img, [f(i) for i in img]]
+
+    for func in scratch[methods]:
+        images = doubling_images(func, images)
+
+    return images
+
+
+scratch_image = scratch_image(img)
+
+if not os.path.exists("scratch_images"):
+    os.mkdir("scratch_images")
+for num, im in enumerate(scratch_image):
+    cv2.imwrite("scratch_images/" + str(num) + ".png", im)

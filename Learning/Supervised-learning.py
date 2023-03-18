@@ -82,7 +82,27 @@ from sklearn.datasets import load_breast_cancer
 # plt.show()
 
 """선형 SVM"""
-# 데이터 생성
+# # 데이터 생성
 X, y = make_classification(n_samples=100, n_features=2, n_redundant=0, random_state=42)
 # 지도 데이터 및 예측 데이터로 구분
 train_X, test_X, train_y, test_y = train_test_split(X, y, random_state=42)
+# 모델 구축
+model = LinearSVC()
+# 모델 학습
+model.fit(train_X, train_y)
+# 정확도 출력
+# print(model.score(test_X, test_y))
+
+"""선형 SVM_2"""
+# 데이터를 플롯
+plt.scatter(X[:, 0], X[:, 1], c=y, marker=".", cmap=matplotlib.colormaps.get_cmap("bwr"), alpha=0.7)
+# 학습해서 도출한 식별 경계선을 플롯
+Xi = np.linspace(-10, 10)
+Y = -model.coef_[0][0] / model.coef_[0][1] * \
+    Xi - model.intercept_ / model.coef_[0][1]
+# 그래프
+plt.plot(Xi, Y)
+# 그래프의 스케일을 조정
+plt.xlim(min(X[:, 0]) - 0.5, max(X[:, 0]) + 0.5)
+
+plt.show()
